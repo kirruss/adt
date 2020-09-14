@@ -1,0 +1,25 @@
+{
+    "name": "@kirrus/adt",
+    "version": "1.0.0",
+    "description": "A helper module of the kirrus framework for working with tagged unions",
+    "keywords": [
+        "kirrus",
+        "adt",
+        "tagged unions",
+        "discriminated unions"
+    ],
+    "repository": "https://github.com/kirruss/adt",
+    "author": "BlueGhostGH <engisoftleaderoff@gmail.com>",
+    "license": "Unlicense",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "typings": "dist/esm/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {}
+}

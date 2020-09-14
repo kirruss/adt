@@ -28,6 +28,7 @@
         "dry-run": "npx --node-arg=\"--require dotenv/config\" semantic-release --dry-run",
         "format-check": "prettier --check \"**/*.+(js|json|ts)\"",
         "lint-check": "eslint \"**/*.+(js|ts)\"",
+        "prepare": "install-self-peers -- --ignore-scripts",
         "test": "jest --config jest.config.json",
         "test-cov": "jest --config jest.cov.config.json",
         "ci:build": "rollup -c ./rollup.config.ts",

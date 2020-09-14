@@ -22,7 +22,8 @@
         "access": "public"
     },
     "scripts": {
-        "build": "rollup -c ./rollup.config.ts"
+        "build": "rollup -c ./rollup.config.ts",
+        "ci:build": "rollup -c ./rollup.config.ts"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^5.0.1",

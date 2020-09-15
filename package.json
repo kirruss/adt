@@ -68,5 +68,8 @@
     },
     "peerDependencies": {
         "@kirrus/core": "^1.0.0"
+    },
+    "dependencies": {
+        "ts-adt": "^1.0.1"
     }
 }

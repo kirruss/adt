@@ -43,6 +43,25 @@ export const match = <
     )
 }
 
+/**
+ * A helper that composes the pack combinator with the
+ * match helper.
+ *
+ * @example
+ * const task = packMatched({
+ *     foo: async a =>
+ *         always({ _type: "foo", message: "foobar" }),
+ *     bar: async a =>
+ *         always({ _type: "bar", message: "barbaz" })
+ * })
+ *
+ * await task({ _type: "foo" }) // => { _type: 'foo', message: 'foobar' }
+ * await task({ _type: "bar" }) // => { _type: 'bar', message: 'barbaz' }
+ *
+ * @param matchObject An object whose keys are of the same
+ * type as the `_type` field of the input
+ * @returns A task that matches an input against a set of inputs
+ */
 export const packMatched = <
     T extends string,
     A extends ADTBase<T>

@@ -71,6 +71,27 @@ export const packMatched = <
     }
 ): EndoTask<A> => pack(match(matchObject))
 
+/**
+ * A helper that generates matchers for a set of keys.
+ *
+ * @example
+ * const { foo, bar } = generateMatchers(["foo", "bar"])()
+ *
+ * const task = pack(
+ *     choose(
+ *         compose(foo, async a => always("foo")),
+ *         compose(bar, async a => always("bar"))
+ *     )
+ * )
+ *
+ * await task({ _type: "foo" }) // => "foo"
+ * await task({ _type: "bar" }) // => "bar"
+ * await task({ _type: "foobar" }) // => null
+ *
+ * @param keys A list of keys to generate matchers for
+ * @returns An object made up of the passed keys and their
+ * generated helpers
+ */
 export const generateMatchers = <T extends string>(
     keys: T[]
 ) => <A extends ADTBase<T>>() =>

@@ -1,6 +1,6 @@
 import type { ADTMember } from "ts-adt"
 
-import { Task, pack } from "@kirrus/core"
+import { EndoTask, pack, Task } from "@kirrus/core"
 
 type ADTBase<T> = { _type: T }
 
@@ -21,3 +21,12 @@ export const match = <
         }
     )
 }
+
+export const packMatched = <
+    T extends string,
+    A extends ADTBase<T>
+>(
+    matchObject: {
+        [K in T]?: Task<ADTMember<A, K>, EndoTask<A>>
+    }
+): EndoTask<A> => pack(match(matchObject))

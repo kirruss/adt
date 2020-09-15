@@ -30,3 +30,21 @@ export const packMatched = <
         [K in T]?: Task<ADTMember<A, K>, EndoTask<A>>
     }
 ): EndoTask<A> => pack(match(matchObject))
+
+export const generateMatchers = <T extends string>(
+    keys: T[]
+) => <A extends ADTBase<T>>() =>
+    (Object.fromEntries(
+        keys.map(<K extends T>(key: K) => [
+            key,
+            async (argument: A) =>
+                argument._type === key
+                    ? ((argument as unknown) as ADTMember<
+                          A,
+                          K
+                      >)
+                    : null
+        ])
+    ) as unknown) as {
+        [K in T]: Task<A, ADTMember<A, K>>
+    }

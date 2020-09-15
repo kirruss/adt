@@ -1,6 +1,6 @@
 import type { ADTMember } from "ts-adt"
 
-import { EndoTask, pack, Task } from "@kirrus/core"
+import { EndoTask, filter, pack, Task } from "@kirrus/core"
 
 type ADTBase<T> = { _type: T }
 
@@ -37,13 +37,7 @@ export const generateMatchers = <T extends string>(
     (Object.fromEntries(
         keys.map(<K extends T>(key: K) => [
             key,
-            async (argument: A) =>
-                argument._type === key
-                    ? ((argument as unknown) as ADTMember<
-                          A,
-                          K
-                      >)
-                    : null
+            filter((argument: A) => argument._type === key)
         ])
     ) as unknown) as {
         [K in T]: Task<A, ADTMember<A, K>>

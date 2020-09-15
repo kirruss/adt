@@ -4,6 +4,27 @@ import { EndoTask, filter, pack, Task } from "@kirrus/core"
 
 type ADTBase<T> = { _type: T }
 
+/**
+ * A helper that takes an object whose keys will be matched
+ * against the type of the input as a task. Not all types in T
+ * must exist as keys.
+ *
+ * @example
+ * const task = match({
+ *     foo: async a => always("foo"),
+ *     bar: async a => always("bar")
+ * })
+ *
+ * const alwaysFoo = await task({ _type: "foo" })
+ * const alwaysBar = await task({ _type: "bar" })
+ *
+ * await alwaysFoo("foobar") // => "foo"
+ * await alwaysBar("foobar") // => "bar"
+ *
+ * @param matchObject An object whose keys are of the same
+ * type as the `_type` field of the input
+ * @returns A task that matches an input against a set of inputs
+ */
 export const match = <
     T extends string,
     A extends ADTBase<T>,

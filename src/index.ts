@@ -2,7 +2,7 @@ import type { ADTMember } from "ts-adt"
 
 import { EndoTask, filter, pack, Task } from "@kirrus/core"
 
-type ADTBase<T> = { _type: T }
+type ADTBase<T = string> = { _type: T }
 
 /**
  * A helper that takes an object whose keys will be matched
@@ -25,22 +25,20 @@ type ADTBase<T> = { _type: T }
  * type as the `_type` field of the input
  * @returns A task that matches an input against a set of inputs
  */
-export const match = <
-    T extends string,
-    A extends ADTBase<T>,
-    B
->(
-    matchObject: { [K in T]?: Task<ADTMember<A, K>, B> }
+export const match = <A extends ADTBase, B>(
+    matchObject: {
+        [K in A["_type"]]?: Task<ADTMember<A, K>, B>
+    }
 ): Task<A, B> => {
-    return pack(
-        async (input): Promise<Task<A, B> | null> => {
-            const value = matchObject[input._type]
+    return pack(async input => {
+        const value = ((matchObject as any)[
+            input._type
+        ] as unknown) as Task<A, B> | null
 
-            if (!value) return null
+        if (!value) return null
 
-            return (value as unknown) as Task<A, B>
-        }
-    )
+        return (value as unknown) as Task<A, B>
+    })
 }
 
 /**
@@ -62,12 +60,12 @@ export const match = <
  * type as the `_type` field of the input
  * @returns A task that matches an input against a set of inputs
  */
-export const packMatched = <
-    T extends string,
-    A extends ADTBase<T>
->(
+export const packMatched = <A extends ADTBase>(
     matchObject: {
-        [K in T]?: Task<ADTMember<A, K>, EndoTask<A>>
+        [K in A["_type"]]?: Task<
+            ADTMember<A, K>,
+            EndoTask<A>
+        >
     }
 ): EndoTask<A> => pack(match(matchObject))
 

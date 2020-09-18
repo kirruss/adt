@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kirruss/adt/compare/v1.0.0...v1.0.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* fixed inference for matching helpers ([6ab15c8](https://github.com/kirruss/adt/commit/6ab15c8cfbbedb8c7b3c6c1ec9b4d5c59bb10694))
+
 # 1.0.0 (2020-09-15)
 
 

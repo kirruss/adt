@@ -1088,9 +1088,9 @@
     chalk "^4.0.0"
 
 "@kirrus/core@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@kirrus/core/-/core-1.0.0.tgz#fe2e5842f928642d8e979ec022119a2ab90deacf"
-  integrity sha512-0eag4IqHPGDepl0iT8GYR2wXNXkLcMIsKboJd4lP2etqzdmtyFz7jEfA8Pqf+Ds58AAmBsk5v1dtM9AYb2NJvA==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@kirrus/core/-/core-1.1.1.tgz#051d5a77d0573244b9c45506b78645d2bf18c022"
+  integrity sha512-OZ2SHAYzWsWnzzGeQXidfPG73OM0QhLtr8MnfBkYVlI4aHHOmoynE/7Wf4VV1zLJI8GjQrNnjyvzYSrFbXssAQ==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"

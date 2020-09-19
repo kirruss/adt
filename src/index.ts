@@ -71,10 +71,10 @@ export const packMatched = <A extends ADTBase>(
     matchObject: {
         [K in A["_type"]]?: Task<
             ADTMember<A, K>,
-            EndoTask<A>
+            Task<ADTMember<A, K>, A> | EndoTask<A>
         >
     }
-): EndoTask<A> => pack(match(matchObject))
+): EndoTask<A> => pack(match(matchObject as any))
 
 /**
  * A helper that generates matchers for a set of keys.

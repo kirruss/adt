@@ -1,14 +1,15 @@
 import { EndoTask, filter, pack, Task } from "@kirrus/core"
 
 type ADTBase<T = string> = { _type: T }
+type ObjectKey = number | string | symbol
 
 /**
  * A helper type for extracting the members of an ADT
  */
-export type ADTMember<ADT, Type extends string> = Extract<
+export type ADTMember<
     ADT,
-    { _type: Type }
->
+    Type extends ObjectKey
+> = Extract<ADT, { _type: Type }>
 
 /**
  * A helper that takes an object whose keys will be matched
@@ -96,7 +97,7 @@ export const packMatched = <A extends ADTBase>(
  * @returns An object made up of the passed keys and their
  * generated helpers
  */
-export const generateMatchers = <T extends string>(
+export const generateMatchers = <T extends ObjectKey>(
     keys: T[]
 ) => <A extends ADTBase<T>>() =>
     (Object.fromEntries(

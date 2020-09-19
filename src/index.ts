@@ -1,8 +1,14 @@
-import type { ADTMember } from "ts-adt"
-
 import { EndoTask, filter, pack, Task } from "@kirrus/core"
 
 type ADTBase<T = string> = { _type: T }
+
+/**
+ * A helper type for extracting the members of an ADT
+ */
+export type ADTMember<ADT, Type extends string> = Extract<
+    ADT,
+    { _type: Type }
+>
 
 /**
  * A helper that takes an object whose keys will be matched

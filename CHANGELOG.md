@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/kirruss/adt/compare/v1.0.1...v1.0.2) (2020-09-19)
+
+
+### Bug Fixes
+
+* added an objectkey type to allow for all key types in the adtmember type ([afbbd01](https://github.com/kirruss/adt/commit/afbbd0123e02af0b43306b67a455fdc8670ea4c7))
+
 ## [1.0.1](https://github.com/kirruss/adt/compare/v1.0.0...v1.0.1) (2020-09-18)
 
 

@@ -108,3 +108,29 @@ export const generateMatchers = <T extends ObjectKey>(
     ) as unknown) as {
         [K in T]: Task<A, ADTMember<A, K>>
     }
+
+type TaskArray = Array<Task<unknown, unknown>>
+
+type Inputs<T extends TaskArray> = {
+    [P in keyof T]: T[P] extends Task<infer I, unknown>
+        ? I
+        : undefined
+}
+
+type Outputs<T extends TaskArray> = {
+    [P in keyof T]: T[P] extends Task<undefined, infer O>
+        ? O
+        : undefined
+}
+
+export const matchTuple = <T extends TaskArray>(
+    matchers: readonly [...T]
+): Task<Inputs<T>, Outputs<T>> => async inputs => {
+    const results = await Promise.all(
+        inputs.map((value, index) => matchers[index](value))
+    )
+
+    if (results.includes(null)) return null
+
+    return results as any
+}
